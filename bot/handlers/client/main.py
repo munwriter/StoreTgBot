@@ -1,7 +1,8 @@
 from aiogram import Dispatcher
+from aiogram import types
+
 from bot import keyboards as kb
 from bot.templates import descriptions as dc
-from aiogram import types
 
 
 def register_client_handlers(dp: Dispatcher):
@@ -27,7 +28,7 @@ def register_client_handlers(dp: Dispatcher):
         if call.data == 'assortment':
             await call.message.answer(dc.ASSORTIMENT_DESCRIPTION, reply_markup=kb.assortment_inlain_keyboard)
             await call.answer()
-
+        
         elif call.data == 'adimatic':
             photos = types.MediaGroup()
             photos.attach_photo(types.InputFile('bot/templates/media/ipad_neighborhood-x-adidas-adimatic-grey.jpeg'), caption='NEIGHBORHOOD x Adidas ADIMATIC - слияние уличного стиля и передовых технологий. Черные тона и агрессивные линии вдохновлены городским движением, а технология BOOST в подошве обеспечивает комфорт и амортизацию. Эти кроссовки - яркий аксессуар для выражения индивидуальности и стиля.')

@@ -1,6 +1,8 @@
 import logging
+
 from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+
 from bot.misc.environment import secret_keys as sk
 from bot.handlers import register_all_handlers
 

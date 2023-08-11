@@ -1,11 +1,11 @@
 from aiogram import Dispatcher, types
 import aiogram.utils.markdown as fmt
+
 from bot.misc.environment import secret_keys as sk
 from bot import keyboards as kb
 
+
 def register_other_handlers(dp: Dispatcher):
-
-
     @dp.message_handler(text='🧨Начать🧨')
     async def main_menu(message: types.Message):
         await message.answer_sticker('CAACAgQAAxkBAAEJ951k057Igh_S_q3xF3aJhjQwYvWeYgACUQADg2rQEPS6m0vsIMEvMAQ')
