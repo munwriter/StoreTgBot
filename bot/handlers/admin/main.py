@@ -1,6 +1,6 @@
 from aiogram import Dispatcher
 
-from .admin_init import initial_admin_handlers
+from .admin_panel import initial_admin_handlers
 from .add_product import admin_add_product_handler
 
 

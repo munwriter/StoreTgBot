@@ -5,9 +5,11 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from bot.misc.environment import secret_keys as sk
 from bot.handlers import register_all_handlers
+from bot.database.models import sql_init
 
 
 async def __on_start_up(dp: Dispatcher):
+    sql_init()
     register_all_handlers(dp)
 
 def run():

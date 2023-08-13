@@ -3,3 +3,4 @@
 /env
 .env
 todo.txt
+*.db

@@ -5,6 +5,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 from bot import keyboards as kb
 from bot.filters.main import AdminFilter
+from bot.database import models
 
 
 class FSMAdminAddProduct(StatesGroup):
@@ -45,8 +46,7 @@ def admin_add_product_handler(dp: Dispatcher):
         async with state.proxy() as data:
             data['price'] = message.text
 
-        async with state.proxy() as data:
-            await message.answer(str(data))
+        await models.add_product(state)
         await message.answer('Товар успешно добавлен', reply_markup=kb.admin_menu_keyboard)
         
         await state.finish()
