@@ -12,7 +12,7 @@ main_menu_keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add('🛒Корз
 main_menu_admin_keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add('🛒Корзина🛒').add('🎲Ассортимент🎲').add('🔧Поддержка🔧').add('Администрирование')
 
 #back assortment inlain keyboard(if your cart is empty)
-back_to_assortment_inlain_keyboard = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='🎲Ассортимент🎲', callback_data='assortment'))   
+back_to_assortment_inlain_keyboard = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='🎲Ассортимент🎲', callback_data='assortment'))   
 
 #assortment inlain keyboard
 def dinamic_assortmen_keyboard():
@@ -23,6 +23,15 @@ def dinamic_assortmen_keyboard():
         return assortment_inlain_keyboard.add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'))                                                                    
     else:
         return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'))
+    
+def dinamic_delete_assortmen_keyboard():
+    if len(models.get_all())!= 0:
+        assortment_inlain_keyboard = InlineKeyboardMarkup(row_width=1)
+        for i in range(len(models.get_all())):
+            assortment_inlain_keyboard.add(InlineKeyboardButton(text=models.get_all()[i][0], callback_data=f'!{models.get_all()[i][0]}'))
+        return assortment_inlain_keyboard                                                                    
+    else:
+        return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Назад в меню администрирования', callback_data='!back_to_admin_menu'))
 
 #product inlain keyboard(add/back)
 product_inlain_menu = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Добавить в корзину', callback_data='add_to_cart'),

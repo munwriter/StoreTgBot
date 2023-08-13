@@ -36,8 +36,7 @@ def register_client_handlers(dp: Dispatcher):
         
         elif call.data in models.get()['name']:
             index = models.get()['name'].index(call.data)
-            await call.bot.send_photo(call.from_user.id, models.get()['photo'][index], 
-                                      f"Название: {models.get()['name'][index]}\nОписание: {models.get()['description'][index]}\nЦена товара: {models.get()['price'][index]}руб", reply_markup=types.ReplyKeyboardRemove())
+            await call.bot.send_photo(call.from_user.id, models.get()['photo'][index], f"Название: {models.get()['name'][index]}\nОписание: {models.get()['description'][index]}\nЦена товара: {models.get()['price'][index]}руб", reply_markup=types.ReplyKeyboardRemove())
             await call.message.answer(text='Что думаете?', reply_markup=kb.product_inlain_menu)
             await call.answer()
         
@@ -48,3 +47,4 @@ def register_client_handlers(dp: Dispatcher):
             else:
                 await call.message.answer('Вы вошли в главное меню', reply_markup=kb.main_menu_keyboard)
                 await call.answer()
+           

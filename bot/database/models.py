@@ -22,6 +22,10 @@ async def add_product(state):
       cursor.execute('INSERT INTO product VALUES (?, ?, ?, ?)', tuple(data.values()))
       db.commit()
 
+async def delete_product(name):
+      cursor.execute("""DELETE from product where name = (?)""", (name,))
+      db.commit()
+
 def get_all()-> list:
     cursor.execute("SELECT * FROM PRODUCT")
     return cursor.fetchall()
