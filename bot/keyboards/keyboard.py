@@ -1,7 +1,7 @@
-from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup, Message
+from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
+                           ReplyKeyboardMarkup)
 
 from bot.database import models
-
 
 '''===============================================CLIENT KEYBOARDS==============================================='''
 #just start button
@@ -14,6 +14,10 @@ main_menu_admin_keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add('🛒К
 #back assortment inlain keyboard(if your cart is empty)
 back_to_assortment_inlain_keyboard = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='🎲Ассортимент🎲', callback_data='assortment'))   
 
+#back assortment inlain keyboard(if your cart is empty)
+cart_inlain_keyboard = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'),
+                                                             InlineKeyboardButton(text='Очистить корзину', callback_data='clear_cart')) 
+
 #assortment inlain keyboard
 def dinamic_assortmen_keyboard():
     if len(models.get_all())!= 0:
@@ -22,7 +26,7 @@ def dinamic_assortmen_keyboard():
             assortment_inlain_keyboard.add(InlineKeyboardButton(text=models.get_all()[i][0], callback_data=models.get_all()[i][0]))
         return assortment_inlain_keyboard.add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'))                                                                    
     else:
-        return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'))
+        return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Назад в меню', callback_data='back_to_menu'),)
     
 def dinamic_delete_assortmen_keyboard():
     if len(models.get_all())!= 0:
@@ -34,12 +38,14 @@ def dinamic_delete_assortmen_keyboard():
         return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Назад в меню администрирования', callback_data='!back_to_admin_menu'))
 
 #product inlain keyboard(add/back)
-product_inlain_menu = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Добавить в корзину', callback_data='add_to_cart'),
-                                                        InlineKeyboardButton(text='Назад к ассортименту', callback_data='assortment'))
+def dinamic_product_inlain_keyboard(product_name):
+    product_inlain_keyboard = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Добавить в корзину', callback_data=f'+{product_name}'),
+                                                                    InlineKeyboardButton(text='Назад к ассортименту', callback_data='assortment'))
+    return product_inlain_keyboard
 
 '''===============================================ADMIN KEYBOARDS==============================================='''
 #admin main menu keyboard
-admin_menu_keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add('Добавить товар').add('Редактировать товар').add('Удалить товар').add('Назад в меню')
+admin_menu_keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add('Добавить товар').add('Удалить товар').add('Назад в меню')
 
 
             

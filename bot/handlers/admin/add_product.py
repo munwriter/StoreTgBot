@@ -1,18 +1,12 @@
 from aiogram import Dispatcher
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters.state import StatesGroup, State
 
 from bot import keyboards as kb
 from bot.filters.main import AdminFilter
 from bot.database import models
+from bot.states.fsm_add_product import FSMAdminAddProduct
 
-
-class FSMAdminAddProduct(StatesGroup):
-    name = State()
-    description = State()
-    photo = State()
-    price = State()
 
 def admin_add_product_handler(dp: Dispatcher):
     @dp.message_handler(AdminFilter(), text='Добавить товар', state=None)

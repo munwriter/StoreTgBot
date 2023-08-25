@@ -24,6 +24,6 @@ def admin_delete_product_handler(dp: Dispatcher):
             await call.answer()
         elif call.data == '!back_to_admin_menu':
             await call.message.answer(text='Вы вошли в меню администратора', reply_markup=kb.admin_menu_keyboard)
-            await call.answer()
+            await call.answer(text='В данный момент список товаров пуст', show_alert=True)
 
         
