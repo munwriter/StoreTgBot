@@ -43,7 +43,7 @@
 # Использование
 * **Клонирование репозитория**
 ```
- https://github.com/munwriter/SneakersStoreAiogramBot.git
+  git clone https://github.com/munwriter/SneakersStoreAiogramBot.git
 ```
 * **Установка зависимостей**
 ```
